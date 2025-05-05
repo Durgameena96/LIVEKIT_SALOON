@@ -115,7 +115,7 @@ This is dynamically displaying all pending questions and rendering a response fo
 ![image](https://github.com/user-attachments/assets/8b49842a-1cc1-442e-8fb3-af53039c014c)
 
 
-**Full Data Flow (End-to-End)**
+***Full Data Flow (End-to-End)***
 1.AI agent receives a question it doesn’t know and runs:
 
 create_help_request(question="Do you offer discounts?", customer_id="abc-123")
@@ -144,7 +144,7 @@ db.collection('help_requests').where('status', '==', 'pending').stream()
    Supervisor doesn’t need to refresh the page.
 
 
-**Key Design Decisions**
+***Key Design Decisions***
 Simulated AI Agent Using LiveKit + Python
 
 I choose to use the LiveKit Python SDK to simulate a basic call-handling AI agent. Since LiveKit doesn’t have a high-level voice bot wrapper, I focused on simulating calls and triggering AI logic through Python functions.
@@ -171,7 +171,7 @@ Auto-refresh is handled via JavaScript polling every 5 seconds to ensure supervi
 Once the supervisor submits a response, the AI agent logs a simulated “text back” and updates its knowledge base with the new info to avoid repeated supervisor queries.
 
 
-**Supervisor Timeout Handling**
+***Supervisor Timeout Handling***
 
 I would implement a background job or cloud function to mark requests as "unresolved" if not handled within a set time window (e.g., 5 minutes), and notify the original user accordingly.
 
