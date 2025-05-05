@@ -171,8 +171,8 @@ Auto-refresh is handled via JavaScript polling every 5 seconds to ensure supervi
 Once the supervisor submits a response, the AI agent logs a simulated “text back” and updates its knowledge base with the new info to avoid repeated supervisor queries.
 
 
-## ***Supervisor Timeout Handling***
-
+## Next Improvements
+**Supervisor Timeout Handling**
 I would implement a background job or cloud function to mark requests as "unresolved" if not handled within a set time window (e.g., 5 minutes), and notify the original user accordingly.
 
 1. Real-Time Updates with Firebase Listeners
