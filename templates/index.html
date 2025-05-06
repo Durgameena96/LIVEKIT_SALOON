@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Pending Help Requests</h2>
+<div id="requests"></div>
+<script>
+    function fetchRequests() {
+        fetch('/api/pending')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('requests');
+                container.innerHTML = ''; // clear old content
+    
+                if (data.length === 0) {
+                    container.innerHTML = "<p>No pending requests.</p>";
+                    return;
+                }
+                data.forEach(req => {
+                const form = `
+                    <div>
+                        <strong>${req.question}</strong> (from ${req.customer_id})<br>
+                        <form action="/respond/${req.id}" method="POST">
+                            <input type="text" name="response" placeholder="Enter response" required>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div><hr>`;
+                container.innerHTML += form;
+            });
+        });
+}
+// Refresh every 5 seconds
+setInterval(fetchRequests, 5000);
+fetchRequests(); // Initial load
+</script>
+{% endblock %}
+              

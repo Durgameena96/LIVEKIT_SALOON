@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Request History</h2>
+{% for req in requests %}
+<div>
+    <strong>{{ req.question }}</strong><br>
+    Status: {{ req.status }}<br>
+    Response: {{ req.response or '—' }}<br>
+    Handled by: {{ req.handled_by or '—' }}<br>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}
